@@ -4,6 +4,10 @@
 pragma solidity ^0.6.6;
 pragma experimental ABIEncoderV2;
 
+/// @title RedFox Migration Contract
+/// @author James Russell
+/// @notice This contract allows for the allocation of ERC20 tokens to accounts identified by a public key
+
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -13,6 +17,12 @@ contract RedFoxMigration is Ownable{
         uint256 blockHeight;
         uint256 amount;
         bool paid;
+    }
+    
+    struct AccountStatus {
+        uint256 pending;
+        uint256 available;
+        uint256 released;
     }
     
     struct SetRBalance {
@@ -33,10 +43,14 @@ contract RedFoxMigration is Ownable{
     mapping (address => TimedBalance[]) private _ebalances;
 
     event RedFoxMigrated(address account,uint256 amount);
-
+    
     function setTokenContract(address tokenContract) public onlyOwner{
         _tokenContract = tokenContract;
     } 
+    
+    function getTokenContract() public view returns(address){
+        return _tokenContract;
+    }
 
     function checkTokenBalance() public view returns(uint256){
         ERC20 redFoxToken = ERC20(_tokenContract);
@@ -54,6 +68,12 @@ contract RedFoxMigration is Ownable{
             _rbalances[account].push(balances[i]);
         }
     }
+    
+    function setEthAccountBalance(address ethAddress, TimedBalance[] memory balances) public onlyOwner{
+        for(uint256 i = 0; i < balances.length; i++){
+            _ebalances[ethAddress].push(balances[i]);
+        }
+    }
 
     function setEthAccountBalances(SetEthBalance[] memory balances) public onlyOwner{
         for (uint i=0; i < balances.length; i++){
@@ -61,11 +81,6 @@ contract RedFoxMigration is Ownable{
         }
     }
 
-    function setEthAccountBalance(address ethAddress, TimedBalance[] memory balances) public onlyOwner{
-        for(uint256 i = 0; i < balances.length; i++){
-            _ebalances[ethAddress].push(balances[i]);
-        }
-    }
 
     function getEthAccountBalances(address ethAddress) public view returns (TimedBalance[] memory) {
         return _ebalances[ethAddress];
@@ -76,20 +91,34 @@ contract RedFoxMigration is Ownable{
     }
     
     function getEthAccountAvailable(address ethAddress) public view returns(uint256){
-        return availableAmount(_ebalances[ethAddress]);
+        AccountStatus memory eStatus = generateAccountStatus(_ebalances[ethAddress]);
+        return eStatus.available;
     }
 
     function getRAccountAvailable(bytes20 account) public view returns (uint256) {
-        return availableAmount(_rbalances[account]);
+        AccountStatus memory rStatus = generateAccountStatus(_rbalances[account]);
+        return rStatus.available;
+    }
+    
+    function getEthAccountStatus(address ethAddress) public view returns(AccountStatus memory){
+        return generateAccountStatus(_ebalances[ethAddress]);
     }
 
-    function balanceOf(bytes32 publicKeyX,bytes32 publicKeyY) public view returns (uint256) {
-        uint256 totalBalance = 0;
+    function getRAccountStatus(bytes20 account) public view returns (AccountStatus memory) {
+        return generateAccountStatus(_rbalances[account]);
+    }
+    
+
+    function totalAccountBalance(bytes32 publicKeyX,bytes32 publicKeyY) public view returns (AccountStatus memory) {
+        AccountStatus memory totalAccountStatus;
         bytes20 accountReference = getAccountReference(publicKeyX,publicKeyY);
         address ethAddress = getEthereumAddress(publicKeyX,publicKeyY);
-        totalBalance += getRAccountAvailable(accountReference);
-        totalBalance += getEthAccountAvailable(ethAddress);
-        return totalBalance;
+        AccountStatus memory rStatus = getRAccountStatus(accountReference);
+        AccountStatus memory eStatus = getEthAccountStatus(ethAddress);
+        totalAccountStatus.pending = rStatus.pending + eStatus.pending;
+        totalAccountStatus.available = rStatus.available + eStatus.available;
+        totalAccountStatus.released = rStatus.released + eStatus.released;
+        return totalAccountStatus;
     }
 
     function withdrawBalance(bytes32 publicKeyX,bytes32 publicKeyY) public {
@@ -143,15 +172,26 @@ contract RedFoxMigration is Ownable{
         return cPublicKey;
     }
     
-    function availableAmount(TimedBalance[] memory balances) private view returns (uint256) {
-        uint256 totalBalance = 0;
+    function generateAccountStatus(TimedBalance[] memory balances) private view returns (AccountStatus memory) {
         uint256 currentBlockHeight = block.number;
+        AccountStatus memory currentStatus;
+        
+        currentStatus.pending = 0;
+        currentStatus.available = 0;
+        currentStatus.released = 0;
+        
         for(uint256 i = 0; i < balances.length; i++){
             if(currentBlockHeight >= balances[i].blockHeight && balances[i].paid == false){
-                totalBalance += balances[i].amount;
+                currentStatus.available += balances[i].amount;
+            }
+            if(balances[i].blockHeight >= currentBlockHeight && balances[i].paid == false){
+                currentStatus.pending += balances[i].amount;
+            }
+            if(balances[i].paid == true){
+                currentStatus.released += balances[i].amount;
             }
         }
-        return totalBalance;
+        return currentStatus;
     }
     
     function updateBalances(address ethAddress,bytes20 accountRef) private {

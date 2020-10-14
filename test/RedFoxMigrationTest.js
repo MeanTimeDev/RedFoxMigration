@@ -6,16 +6,19 @@ const Token = artifacts.require('Token.sol');
 contract('RedFoxMigration', function (accounts) {
 
   it('Should create a token and then initiate the migration',async () => {
-    //const redFoxMigrationInstance = await RedFoxMigration.deployed();
-    //const RedFoxM = await RedFoxMigration.new();
+    const redFoxMigrationInstance = await RedFoxMigration.deployed();
+    const RedFoxM = await RedFoxMigration.new();
     const tokenInstance = await Token.deployed();
-    /*const token = await Token.new("FOX test","FOXT",[[accounts[0],10000]]);
-    
-    //console.log("Coin address:",token.address);
-    let contractBalance = await tokenInstance.balanceOf(accounts[0]);
-    console.log(contractBalance);*/
-    //let ripemdBalance = await address("0x03").transfer(1);
-    //assert(contractBalance=1000,"Incorrect account balance");
+    //set the redfox token
+    const token = await Token.new([[accounts[0],10000],[accounts[1],10000],[accounts[2],10000],[accounts[3],10000],[accounts[4],10000],[RedFoxM.address,1000000]]);
+    await RedFoxM.setTokenContract(token.address);    
+    //cehck the balances are correct
+    const totalSupply = await token.totalSupply();
+    const accountBalance = await token.balanceOf(accounts[1]);
+    assert(accountBalance == 10000,"Account 0 supply does not equal 10000");
+    assert(totalSupply == 1050000,"Total Supply does not add up");
+    //const redfoxSupply = await RedFoxM.checkTokenBalance();
+    //assert(redfoxSupply == 1000000,"Redfox supply should be 1000000");
   })
 /*
   it('Should create an ethereum and bitcoin address from a public key',async() => {

@@ -44,30 +44,6 @@
 				"type": "event"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "publicKeyX",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "publicKeyY",
-						"type": "bytes32"
-					}
-				],
-				"name": "balanceOf",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "checkTokenBalance",
 				"outputs": [
@@ -162,6 +138,42 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "ethAddress",
+						"type": "address"
+					}
+				],
+				"name": "getEthAccountStatus",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "pending",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "available",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "released",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct RedFoxMigration.AccountStatus",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes32",
 						"name": "publicKeyX",
 						"type": "bytes32"
@@ -233,6 +245,55 @@
 						"internalType": "struct RedFoxMigration.TimedBalance[]",
 						"name": "",
 						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes20",
+						"name": "account",
+						"type": "bytes20"
+					}
+				],
+				"name": "getRAccountStatus",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "pending",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "available",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "released",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct RedFoxMigration.AccountStatus",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTokenContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -428,6 +489,47 @@
 			{
 				"inputs": [
 					{
+						"internalType": "bytes32",
+						"name": "publicKeyX",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "publicKeyY",
+						"type": "bytes32"
+					}
+				],
+				"name": "totalAccountBalance",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "pending",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "available",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "released",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct RedFoxMigration.AccountStatus",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "newOwner",
 						"type": "address"
@@ -491,10 +593,10 @@
 	},
 	"sources": {
 		"localhost/contracts/RedFoxMigration.sol": {
-			"keccak256": "0x05e63e37cd8c79487a5ac93fff95f440e529d50968986022a78f5f2ad63e6e5f",
+			"keccak256": "0x8467e0c0c045120651d5a6756116075168618fe03e191bb5ad16b653d2105603",
 			"urls": [
-				"bzz-raw://f5a63b7504dd1b5c823467abe338441ed743b5d8ff54f0d12a2fafd7aa49c444",
-				"dweb:/ipfs/QmQk9biFg7umEZVsEoneiSdDQYcx5fsasgyrE3nVRfNNyo"
+				"bzz-raw://54e2abc10c712c7d5aae9bae8b3a8cd8d719d80fe672d9ecde4f67ae5319a337",
+				"dweb:/ipfs/QmYn2vLSEwLezDksrmSU5TBRHF4q42CnyQXE9HX1Pe5oF5"
 			]
 		},
 		"localhost/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
