@@ -4,8 +4,8 @@
 pragma solidity ^0.6.6;
 pragma experimental ABIEncoderV2;
 
-import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
-import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract RedFoxMigration is Ownable{
     

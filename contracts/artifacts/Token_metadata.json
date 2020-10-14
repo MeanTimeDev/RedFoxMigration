@@ -8,16 +8,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_symbol",
-						"type": "string"
-					},
-					{
 						"components": [
 							{
 								"internalType": "address",
@@ -320,11 +310,20 @@
 				"balanceOf(address)": {
 					"details": "See {IERC20-balanceOf}."
 				},
+				"decimals()": {
+					"details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5,05` (`505 / 10 ** 2`).     * Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless {_setupDecimals} is called.     * NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
+				},
 				"decreaseAllowance(address,uint256)": {
 					"details": "Atomically decreases the allowance granted to `spender` by the caller.     * This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}.     * Emits an {Approval} event indicating the updated allowance.     * Requirements:     * - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`."
 				},
 				"increaseAllowance(address,uint256)": {
 					"details": "Atomically increases the allowance granted to `spender` by the caller.     * This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}.     * Emits an {Approval} event indicating the updated allowance.     * Requirements:     * - `spender` cannot be the zero address."
+				},
+				"name()": {
+					"details": "Returns the name of the token."
+				},
+				"symbol()": {
+					"details": "Returns the symbol of the token, usually a shorter version of the name."
 				},
 				"totalSupply()": {
 					"details": "See {IERC20-totalSupply}."
@@ -333,7 +332,7 @@
 					"details": "See {IERC20-transfer}.     * Requirements:     * - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`."
 				},
 				"transferFrom(address,address,uint256)": {
-					"details": "See {IERC20-transferFrom}.     * Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20};     * Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for `sender`'s tokens of at least `amount`."
+					"details": "See {IERC20-transferFrom}.     * Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20};     * Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`."
 				}
 			}
 		},
@@ -358,38 +357,45 @@
 	},
 	"sources": {
 		"localhost/contracts/Token.sol": {
-			"keccak256": "0xaf2a6b9ab5692382996fc911063d6329f158f5a0ff6de9f4107129cbf1665e49",
+			"keccak256": "0xfbe2af9172070a600bc47218b22442738420372e603fc8038c5821edb46160ca",
 			"urls": [
-				"bzz-raw://a056023270afdf2e2d99cb08b89bdf805c73d62dc22341dd477274a06de98ec2",
-				"dweb:/ipfs/QmWaQ4zGnumfNyfPBqFUAZ8ziSQBftqnj4XkkB1P1r4MWY"
+				"bzz-raw://4c9aaeb2271adde888b2a412814846c564f84f9ffa78dece3fa101ab00ccda11",
+				"dweb:/ipfs/QmQHLhcDo1LKAq3Hs5JH6fJxDh4WDBENHKb3r5dqFX24e4"
 			]
 		},
-		"localhost/node_modules/openzeppelin-solidity/contracts/GSN/Context.sol": {
-			"keccak256": "0x9115ba372645f987970e86a46d49923e39be239222dcd45e6149097fd78a410c",
+		"localhost/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
+			"keccak256": "0xdb26cbf4d028490f49831a7865c2fe1b28db44b535ca8d343785a3b768aae183",
 			"urls": [
-				"bzz-raw://030b7c52b8e7167507a963d62f7424ecb599b86b150b3cab8865a28ebc72a029",
-				"dweb:/ipfs/QmPxHhgBHf4TLt9Uk5FPAp2uaxwUApfBZJS3TSKSYJ8DsG"
+				"bzz-raw://840b14ce0315c47d49ba328f1f9fa7654ded1c9e1559e6c5e777a7b2dc28bf0a",
+				"dweb:/ipfs/QmTLLabn4wcfGro9LEmUXUN2nwKqZSotXMvjDCLXEnLtZP"
 			]
 		},
-		"localhost/node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol": {
-			"keccak256": "0x55bfb7c9952cd96173a12832726a54bb7f0eced0baaec6c9a19e421429062644",
+		"localhost/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+			"keccak256": "0x9a9cf02622cd7a64261b10534fc3260449da25c98c9e96d1b4ae8110a20e5806",
 			"urls": [
-				"bzz-raw://5645dcceaabd7c86a7571913861085278f37854cbf7eaf5a0bbb968bbf13c94d",
-				"dweb:/ipfs/QmRCFtcEsRiEvBTbZtnuQ7nJnPdfhvt28XKhtaeaJngWQN"
+				"bzz-raw://2df142592d1dc267d9549049ee3317fa190d2f87eaa565f86ab05ec83f7ab8f5",
+				"dweb:/ipfs/QmSkJtcfWo7c42KnL5hho6GFxK6HRNV91XABx1P7xDtfLV"
 			]
 		},
-		"localhost/node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol": {
-			"keccak256": "0xe202946b728d83653ff0b4f5c1f0c840e06377f0949f86cdbd82f975a877f908",
+		"localhost/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0x91e0bd6a6762d2a1700dab0849de8422611355100576c4beef1e80d82a4104a0",
 			"urls": [
-				"bzz-raw://572ac5567826ce4e7a1ab671c2f879ecdc345b124acd6286035a8efaec533777",
-				"dweb:/ipfs/QmeU5bEMfvF4tsrRUTVUXezGhihGpHQPc7zdo7VjvtcxHD"
+				"bzz-raw://73bbd77af0a8b07255d2ffa20728bcf13b116007c9ddac5d37046cfabb0e1e02",
+				"dweb:/ipfs/QmRgZgWCWCSMTTaok6o4QvWA6MgB4goS8qpb3sN7bAvaZ9"
 			]
 		},
-		"localhost/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0xd2fb4866c3fa8015592d2dcc981bcbdd3d07ac00608ed01c20bd4ad2e87c231e",
+		"localhost/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x5c26b39d26f7ed489e555d955dcd3e01872972e71fdd1528e93ec164e4f23385",
 			"urls": [
-				"bzz-raw://c19086027da5df589e2b7665348100c335e8a43618ca0b6b40732972c173a01d",
-				"dweb:/ipfs/QmPwxSeXjZcWP68ssBEj9FEbPfqHrxsTAaHWhxAVf76iKR"
+				"bzz-raw://efdc632af6960cf865dbc113665ea1f5b90eab75cc40ec062b2f6ae6da582017",
+				"dweb:/ipfs/QmfAZFDuG62vxmAN9DnXApv7e7PMzPqi4RkqqZHLMSQiY5"
+			]
+		},
+		"localhost/node_modules/@openzeppelin/contracts/utils/Address.sol": {
+			"keccak256": "0xf5fa8cbdffa5ef8be49b246b5628facc30b71707e78a45d80d93b64eff3fe390",
+			"urls": [
+				"bzz-raw://774e78a9ff32792cc95db4d2ceaf3a7965bb7f0bea5e6cb7cff182b450d44b37",
+				"dweb:/ipfs/QmRRMC4uj7eAcLW7chynA3sNEYULMFazdLwQHKHQPyzAbA"
 			]
 		}
 	},
