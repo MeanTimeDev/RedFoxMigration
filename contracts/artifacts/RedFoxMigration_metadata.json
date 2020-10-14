@@ -59,30 +59,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "bytes32",
-						"name": "publicKeyX",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "publicKeyY",
-						"type": "bytes32"
-					}
-				],
-				"name": "getAccountReference",
-				"outputs": [
-					{
-						"internalType": "bytes20",
-						"name": "",
-						"type": "bytes20"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "ethAddress",
 						"type": "address"
@@ -169,30 +145,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "publicKeyX",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "publicKeyY",
-						"type": "bytes32"
-					}
-				],
-				"name": "getEthereumAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "addr",
-						"type": "address"
-					}
-				],
-				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -593,10 +545,10 @@
 	},
 	"sources": {
 		"localhost/contracts/RedFoxMigration.sol": {
-			"keccak256": "0x8467e0c0c045120651d5a6756116075168618fe03e191bb5ad16b653d2105603",
+			"keccak256": "0x64271eb729dd534ba21e196f124516a849ed7e82c30df62334e14c73abc748f9",
 			"urls": [
-				"bzz-raw://54e2abc10c712c7d5aae9bae8b3a8cd8d719d80fe672d9ecde4f67ae5319a337",
-				"dweb:/ipfs/QmYn2vLSEwLezDksrmSU5TBRHF4q42CnyQXE9HX1Pe5oF5"
+				"bzz-raw://c655a6c015ca0cd3607f6e5e7746da3424745a1ce58daeec4e0d5c47b87eedcc",
+				"dweb:/ipfs/QmTwhUh9tNVYu7yn31ouzqkSAcBeEkGzkRSAYgnJmTMRHY"
 			]
 		},
 		"localhost/node_modules/@openzeppelin/contracts/GSN/Context.sol": {

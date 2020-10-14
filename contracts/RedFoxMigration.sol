@@ -145,19 +145,19 @@ contract RedFoxMigration is Ownable{
         emit RedFoxMigrated(msg.sender,withdrawAmount);
     }
 
-    function getEthereumAddress(bytes32 publicKeyX,bytes32 publicKeyY) public pure returns(address addr){
+    function getAccountReference(bytes32 publicKeyX,bytes32 publicKeyY) private pure returns(bytes20){
+        bytes memory compressedPublicKey = getCompressedPublicKey(publicKeyX,publicKeyY);
+        bytes32 firstSha256 = sha256(compressedPublicKey);
+        bytes20 ripemd = ripemd160(abi.encodePacked(firstSha256));
+        return ripemd;        
+    }
+
+    function getEthereumAddress(bytes32 publicKeyX,bytes32 publicKeyY) private pure returns(address addr){
         bytes32 hash = keccak256(abi.encodePacked(publicKeyX,publicKeyY));
         assembly {
             mstore(0, hash)
             addr := mload(0)
         }    
-    }
-    
-    function getAccountReference(bytes32 publicKeyX,bytes32 publicKeyY) public pure returns(bytes20){
-        bytes memory compressedPublicKey = getCompressedPublicKey(publicKeyX,publicKeyY);
-        bytes32 firstSha256 = sha256(compressedPublicKey);
-        bytes20 ripemd = ripemd160(abi.encodePacked(firstSha256));
-        return ripemd;        
     }
     
     function getCompressedPublicKey(bytes32 publicKeyX,bytes32 publicKeyY) private pure returns(bytes memory){
