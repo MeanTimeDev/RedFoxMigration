@@ -208,7 +208,7 @@ contract RedFoxMigration is Ownable{
             if(currentBlockHeight >= balances[i].blockHeight && balances[i].paid == false){
                 currentStatus.available += balances[i].amount;
             }
-            if(balances[i].blockHeight >= currentBlockHeight && balances[i].paid == false){
+            if(balances[i].blockHeight > currentBlockHeight && balances[i].paid == false){
                 currentStatus.pending += balances[i].amount;
             }
             if(balances[i].paid == true){
