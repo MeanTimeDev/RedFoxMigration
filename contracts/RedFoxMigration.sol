@@ -36,6 +36,7 @@ contract RedFoxMigration is Ownable{
     }
     
     address private _tokenContract;
+    bool private _finalizeImport;
     
     //for balances with an r address
     mapping (bytes20 => TimedBalance[]) private _rbalances;
@@ -44,10 +45,27 @@ contract RedFoxMigration is Ownable{
 
     event RedFoxMigrated(address account,uint256 amount);
     
+    constructor() public {
+        _finalizeImport = false;
+    }
+
     function setTokenContract(address tokenContract) public onlyOwner{
+        require(_finalizeImport == false,
+            "tokenContract cannot be changed after import has been finalized");
         _tokenContract = tokenContract;
+
     } 
     
+    function finalizeImport() public onlyOwner{
+        require(_finalizeImport == false,
+            "Action cannot be taken after import has been finalized");
+        _finalizeImport = true;
+    }
+
+    function isFinalized() public returns(bool){
+        return _finalizeImport;
+    }
+
     function getTokenContract() public view returns(address){
         return _tokenContract;
     }
@@ -57,30 +75,37 @@ contract RedFoxMigration is Ownable{
         return redFoxToken.balanceOf(address(this));
     }
 
-    function setRAccountBalances(SetRBalance[] memory balances) public onlyOwner{
-        for (uint i=0; i < balances.length; i++){
-            setRAccountBalance(balances[i].account,balances[i].balances);
-        }
-    }
-
     function setRAccountBalance(bytes20 account, TimedBalance[] memory balances) public onlyOwner{
+        require(_finalizeImport == false,
+            "Action cannot be taken after import has been finalized");
         for(uint256 i = 0; i < balances.length; i++){
             _rbalances[account].push(balances[i]);
         }
     }
+
+    function setRAccountBalances(SetRBalance[] memory balances) public onlyOwner{
+        require(_finalizeImport == false,
+            "Action cannot be taken after import has been finalized");
+        for (uint i=0; i < balances.length; i++){
+            setRAccountBalance(balances[i].account,balances[i].balances);
+        }
+    }
     
     function setEthAccountBalance(address ethAddress, TimedBalance[] memory balances) public onlyOwner{
+        require(_finalizeImport == false,
+            "Action cannot be taken after import has been finalized");
         for(uint256 i = 0; i < balances.length; i++){
             _ebalances[ethAddress].push(balances[i]);
         }
     }
 
     function setEthAccountBalances(SetEthBalance[] memory balances) public onlyOwner{
+        require(_finalizeImport == false,
+            "Action cannot be taken after import has been finalized");
         for (uint i=0; i < balances.length; i++){
             setEthAccountBalance(balances[i].account,balances[i].balances);
         }
     }
-
 
     function getEthAccountBalances(address ethAddress) public view returns (TimedBalance[] memory) {
         return _ebalances[ethAddress];
@@ -108,7 +133,6 @@ contract RedFoxMigration is Ownable{
         return generateAccountStatus(_rbalances[account]);
     }
     
-
     function totalAccountBalance(bytes32 publicKeyX,bytes32 publicKeyY) public view returns (AccountStatus memory) {
         AccountStatus memory totalAccountStatus;
         bytes20 accountReference = getAccountReference(publicKeyX,publicKeyY);
@@ -160,7 +184,7 @@ contract RedFoxMigration is Ownable{
         }    
     }
     
-    function getCompressedPublicKey(bytes32 publicKeyX,bytes32 publicKeyY) private pure returns(bytes memory){
+    function getCompressedPublicKey(bytes32 publicKeyX,bytes32 publicKeyY) public pure returns(bytes memory){
         uint256 yAsInt = uint256(publicKeyY);
         uint8 yOdd = uint8(yAsInt&1);
         byte leadingByte;
@@ -207,7 +231,5 @@ contract RedFoxMigration is Ownable{
             }
         }
     }
-
-
 }
 
