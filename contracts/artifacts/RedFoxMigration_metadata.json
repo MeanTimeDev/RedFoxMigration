@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -54,6 +59,37 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "finalizeImport",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "publicKeyX",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "publicKeyY",
+						"type": "bytes32"
+					}
+				],
+				"name": "getCompressedPublicKey",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -246,6 +282,19 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isFinalized",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -512,6 +561,7 @@
 			}
 		],
 		"devdoc": {
+			"author": "James Russell",
 			"methods": {
 				"owner()": {
 					"details": "Returns the address of the current owner."
@@ -522,10 +572,12 @@
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
-			}
+			},
+			"title": "RedFox Migration Contract"
 		},
 		"userdoc": {
-			"methods": {}
+			"methods": {},
+			"notice": "This contract allows for the allocation of ERC20 tokens to accounts identified by a public key"
 		}
 	},
 	"settings": {
@@ -545,52 +597,10 @@
 	},
 	"sources": {
 		"localhost/contracts/RedFoxMigration.sol": {
-			"keccak256": "0x64271eb729dd534ba21e196f124516a849ed7e82c30df62334e14c73abc748f9",
+			"keccak256": "0xa62cfddb6936678d500f363f36902ed6ec0b312d16684115ac05244be571db46",
 			"urls": [
-				"bzz-raw://c655a6c015ca0cd3607f6e5e7746da3424745a1ce58daeec4e0d5c47b87eedcc",
-				"dweb:/ipfs/QmTwhUh9tNVYu7yn31ouzqkSAcBeEkGzkRSAYgnJmTMRHY"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
-			"keccak256": "0xdb26cbf4d028490f49831a7865c2fe1b28db44b535ca8d343785a3b768aae183",
-			"urls": [
-				"bzz-raw://840b14ce0315c47d49ba328f1f9fa7654ded1c9e1559e6c5e777a7b2dc28bf0a",
-				"dweb:/ipfs/QmTLLabn4wcfGro9LEmUXUN2nwKqZSotXMvjDCLXEnLtZP"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-			"keccak256": "0x4bd6402ca6b3419008c2b482aff54e66836e8cb4eba2680e42ac5884ae6424fc",
-			"urls": [
-				"bzz-raw://8f9f711fb8d0d92aeea1c327e3845d13ca1fa8f142e47f8723cd5b3106fb29a3",
-				"dweb:/ipfs/QmVQUReDW9f4zGqhizwHnyU8EntMs95tbASdqkGncnikba"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
-			"keccak256": "0x9a9cf02622cd7a64261b10534fc3260449da25c98c9e96d1b4ae8110a20e5806",
-			"urls": [
-				"bzz-raw://2df142592d1dc267d9549049ee3317fa190d2f87eaa565f86ab05ec83f7ab8f5",
-				"dweb:/ipfs/QmSkJtcfWo7c42KnL5hho6GFxK6HRNV91XABx1P7xDtfLV"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-			"keccak256": "0x91e0bd6a6762d2a1700dab0849de8422611355100576c4beef1e80d82a4104a0",
-			"urls": [
-				"bzz-raw://73bbd77af0a8b07255d2ffa20728bcf13b116007c9ddac5d37046cfabb0e1e02",
-				"dweb:/ipfs/QmRgZgWCWCSMTTaok6o4QvWA6MgB4goS8qpb3sN7bAvaZ9"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x5c26b39d26f7ed489e555d955dcd3e01872972e71fdd1528e93ec164e4f23385",
-			"urls": [
-				"bzz-raw://efdc632af6960cf865dbc113665ea1f5b90eab75cc40ec062b2f6ae6da582017",
-				"dweb:/ipfs/QmfAZFDuG62vxmAN9DnXApv7e7PMzPqi4RkqqZHLMSQiY5"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/utils/Address.sol": {
-			"keccak256": "0xf5fa8cbdffa5ef8be49b246b5628facc30b71707e78a45d80d93b64eff3fe390",
-			"urls": [
-				"bzz-raw://774e78a9ff32792cc95db4d2ceaf3a7965bb7f0bea5e6cb7cff182b450d44b37",
-				"dweb:/ipfs/QmRRMC4uj7eAcLW7chynA3sNEYULMFazdLwQHKHQPyzAbA"
+				"bzz-raw://079019d6f7d0442f828c1f4ebaddf1c9a013b11946afc6e03ebbd2d8fb2c6ada",
+				"dweb:/ipfs/QmU88DNRTB7BnNLhzSNwfq7STddPTj7oCMAVqw3huPP3xU"
 			]
 		}
 	},

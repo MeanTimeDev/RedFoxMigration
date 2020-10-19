@@ -1,0 +1,41 @@
+{
+	"compiler": {
+		"version": "0.6.6+commit.6c089d02"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Collection of functions related to the address type",
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/contracts/RedFoxMigration.sol": "Address"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/contracts/RedFoxMigration.sol": {
+			"keccak256": "0xa62cfddb6936678d500f363f36902ed6ec0b312d16684115ac05244be571db46",
+			"urls": [
+				"bzz-raw://079019d6f7d0442f828c1f4ebaddf1c9a013b11946afc6e03ebbd2d8fb2c6ada",
+				"dweb:/ipfs/QmU88DNRTB7BnNLhzSNwfq7STddPTj7oCMAVqw3huPP3xU"
+			]
+		}
+	},
+	"version": 1
+}
