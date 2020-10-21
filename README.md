@@ -28,6 +28,11 @@ Where blockHeight is the blockheight after which the tokens will become availabl
 
 setRAccountBalances & setEthAccountBalances allows the user to pass an array of accounts and TimedBalances to the contract.
 
+## Finalise the imports
+Finalising the import process prevents the token contracted associated being changed and any more tokens to be paid out being added. This should be called after all imports are complete. This function can only be called by the owner address of the contract.
+finalizeImport()
+
+
 ## View and Withdraw Tokens
 
 Retrieving token balances and completing withdrawals are done by passing in the x and y coordinates from the public key. The functions calculate both the ethereum address and the Raddress and then use these to look up their token allocation in the internal mappings.
