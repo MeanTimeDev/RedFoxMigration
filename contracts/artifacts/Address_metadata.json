@@ -1,0 +1,41 @@
+{
+	"compiler": {
+		"version": "0.6.6+commit.6c089d02"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Collection of functions related to the address type",
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/contracts/Token-flattened.sol": "Address"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/contracts/Token-flattened.sol": {
+			"keccak256": "0xbce8bcb754084b1ed0f3e4e7fae99ef50538b284265d88a9520f1cd691de4f2b",
+			"urls": [
+				"bzz-raw://5c11742a7d827bbe8b071d9f153f0821f6e1851f5fed7b036ac50ead1aa2decc",
+				"dweb:/ipfs/QmbQHqot78acAaptVDdZFPN2gtaJVFXDCQ1TRBwJ1zmxQZ"
+			]
+		}
+	},
+	"version": 1
+}

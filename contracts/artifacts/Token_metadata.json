@@ -342,7 +342,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/contracts/Token.sol": "Token"
+			"localhost/contracts/Token-flattened.sol": "Token"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -356,46 +356,11 @@
 		"remappings": []
 	},
 	"sources": {
-		"localhost/contracts/Token.sol": {
-			"keccak256": "0xfbe2af9172070a600bc47218b22442738420372e603fc8038c5821edb46160ca",
+		"localhost/contracts/Token-flattened.sol": {
+			"keccak256": "0xbce8bcb754084b1ed0f3e4e7fae99ef50538b284265d88a9520f1cd691de4f2b",
 			"urls": [
-				"bzz-raw://4c9aaeb2271adde888b2a412814846c564f84f9ffa78dece3fa101ab00ccda11",
-				"dweb:/ipfs/QmQHLhcDo1LKAq3Hs5JH6fJxDh4WDBENHKb3r5dqFX24e4"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
-			"keccak256": "0xdb26cbf4d028490f49831a7865c2fe1b28db44b535ca8d343785a3b768aae183",
-			"urls": [
-				"bzz-raw://840b14ce0315c47d49ba328f1f9fa7654ded1c9e1559e6c5e777a7b2dc28bf0a",
-				"dweb:/ipfs/QmTLLabn4wcfGro9LEmUXUN2nwKqZSotXMvjDCLXEnLtZP"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
-			"keccak256": "0x9a9cf02622cd7a64261b10534fc3260449da25c98c9e96d1b4ae8110a20e5806",
-			"urls": [
-				"bzz-raw://2df142592d1dc267d9549049ee3317fa190d2f87eaa565f86ab05ec83f7ab8f5",
-				"dweb:/ipfs/QmSkJtcfWo7c42KnL5hho6GFxK6HRNV91XABx1P7xDtfLV"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-			"keccak256": "0x91e0bd6a6762d2a1700dab0849de8422611355100576c4beef1e80d82a4104a0",
-			"urls": [
-				"bzz-raw://73bbd77af0a8b07255d2ffa20728bcf13b116007c9ddac5d37046cfabb0e1e02",
-				"dweb:/ipfs/QmRgZgWCWCSMTTaok6o4QvWA6MgB4goS8qpb3sN7bAvaZ9"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x5c26b39d26f7ed489e555d955dcd3e01872972e71fdd1528e93ec164e4f23385",
-			"urls": [
-				"bzz-raw://efdc632af6960cf865dbc113665ea1f5b90eab75cc40ec062b2f6ae6da582017",
-				"dweb:/ipfs/QmfAZFDuG62vxmAN9DnXApv7e7PMzPqi4RkqqZHLMSQiY5"
-			]
-		},
-		"localhost/node_modules/@openzeppelin/contracts/utils/Address.sol": {
-			"keccak256": "0xf5fa8cbdffa5ef8be49b246b5628facc30b71707e78a45d80d93b64eff3fe390",
-			"urls": [
-				"bzz-raw://774e78a9ff32792cc95db4d2ceaf3a7965bb7f0bea5e6cb7cff182b450d44b37",
-				"dweb:/ipfs/QmRRMC4uj7eAcLW7chynA3sNEYULMFazdLwQHKHQPyzAbA"
+				"bzz-raw://5c11742a7d827bbe8b071d9f153f0821f6e1851f5fed7b036ac50ead1aa2decc",
+				"dweb:/ipfs/QmbQHqot78acAaptVDdZFPN2gtaJVFXDCQ1TRBwJ1zmxQZ"
 			]
 		}
 	},
